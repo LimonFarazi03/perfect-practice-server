@@ -29,6 +29,13 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+    // get and read single api
+    app.get("/note/:id", async(req, res) => {
+      const id = req.params.id;
+      const query = {_id : ObjectId(id)};
+      const result = await collectionDatabase.findOne(query);
+      res.send(result);
+    });
     // Create api
     app.post("/note", async (req, res) => {
       const query = req.body;
